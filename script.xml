@@ -24,5 +24,9 @@
     <nombre>Juego 5</nombre>
     <ruta>practicas/Educabaran/juego4.html</ruta>
     <habilitado>si</habilitado>
-  </juego5>
+  <juego6>
+    <nombre>Juego 6</nombre>
+    <ruta>practicas/Educabaran/juego6.html</ruta>
+    <habilitado>si</habilitado>
+  </juego6>
 </juegos>
