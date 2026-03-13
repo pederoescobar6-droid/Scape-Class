@@ -4,4 +4,5 @@ por tanto antes de intentar abrir el arcivo se deben ejecutar por orden los sigu
 Los comandos son los siguientes y en una terminal cmd no powershell:
   - cd a la carpeta donde hallas guradado el HTML
   - python3 -m http.server 8000
-  - Y en el navegador buscas server:800 hay selecionas el archivo HTML y listo 
+  - Y en el navegador buscas server:800 hay selecionas el archivo HTML y listo
+  - ivan gay
