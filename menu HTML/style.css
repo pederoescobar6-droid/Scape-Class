@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educabarán - Space Menu Final</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="starfield" class="stars-container"></div>
+
+    <h1 class="retro-title">Educabarán</h1>
+
+    <div class="canvas-wrapper">
+        <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <script src="script.js">
+    // --- LÓGICA DE LOS ROMBOS ---
+    let games = [];
+    let currentIndex = 0;
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function loadGamesFromXML() {
+        fetch('games.xml')
+            .then(response => response.text())
+            .then(str => (new window.DOMParser()).parseFromString(str, 'text/xml'))
+            .then(xml => {
+                const juegosNode = xml.getElementsByTagName('juegos')[0];
+                games = [];
+                for (let i = 1; i <= 4; i++) {
+                    const juegoNode = juegosNode.getElementsByTagName(`juego${i}`)[0];
+                    if (!juegoNode || juegoNode.getElementsByTagName('habilitado')[0].textContent.trim().toLowerCase() !== 'si') continue;
+                    games.push({ 
+                        nombre: juegoNode.getElementsByTagName('nombre')[0].textContent.trim(), 
+                        ruta: juegoNode.getElementsByTagName('ruta')[0].textContent.trim(),
+                        color: '#00f2ff' 
+                    });
+                }
+                animate();
+            });
+    }
+
+    function drawRhombus(x, y, size) {
+        ctx.beginPath();
+        ctx.moveTo(x, y - size);
+        ctx.lineTo(x + size, y);
+        ctx.lineTo(x, y + size);
+        ctx.lineTo(x - size, y);
+        ctx.closePath();
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const cx = canvas.width / 2;
+        
+        // --- AJUSTE CLAVE: cy al 35% de la altura para que suban los rombos ---
+        const cy = canvas.height * 0.35; 
+        const espacio = 320;
+
+        games.forEach((juego, i) => {
+            const posX = cx + (i - currentIndex) * espacio;
+            const distancia = Math.abs(i - currentIndex);
+            const escala = Math.max(0.4, 1 - distancia * 0.4);
+            const opacidad = Math.max(0.1, 1 - distancia * 0.7);
+            const size = 140 * escala; 
+
+            ctx.save();
+            ctx.globalAlpha = opacidad;
+            ctx.shadowBlur = (i === currentIndex) ? 40 : 10;
+            ctx.shadowColor = juego.color;
+            ctx.strokeStyle = juego.color;
+            ctx.lineWidth = (i === currentIndex) ? 6 : 2;
+            
+            drawRhombus(posX, cy, size);
+            ctx.stroke();
+
+            ctx.fillStyle = '#050510';
+            ctx.fill();
+
+            ctx.fillStyle = "white";
+            ctx.font = `bold ${22 * escala}px 'Orbitron', sans-serif`;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(juego.nombre, posX, cy);
+            ctx.restore();
+        });
+        requestAnimationFrame(animate);
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (!games.length) return;
+        if (e.key === 'ArrowLeft') currentIndex = Math.max(0, currentIndex - 1);
+        if (e.key === 'ArrowRight') currentIndex = Math.min(games.length - 1, currentIndex + 1);
+        if (e.key === 'Enter') window.location.href = games[currentIndex].ruta;
+    });
+
+    loadGamesFromXML();
+
+    // --- LÓGICA DE ESTRELLAS (Opcional, si no usas script.js) ---
+    function createStars() {
+        const starfield = document.getElementById('starfield');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.width = star.style.height = Math.random() * 3 + 'px';
+            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+            starfield.appendChild(star);
+        }
+    }
+    createStars();
+    </script>
+
+<div id="ui-overlay">
+        <p>Usa las flechas <b>← Izquierda / Derecha →</b></p>
+        <p>Presiona <b>ENTER</b> para seleccionar</p>
+    </div>
+
+
+</body>
+</html>
