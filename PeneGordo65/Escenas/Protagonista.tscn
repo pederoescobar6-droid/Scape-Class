@@ -1,0 +1,143 @@
+[gd_scene format=3 uid="uid://ce655y2y7rued"]
+
+[ext_resource type="Script" uid="uid://dbelsbl8c6q7j" path="res://PeneGordo65/Scripts/Protagonista.cs" id="1_ti2e3"]
+[ext_resource type="Texture2D" uid="uid://crxfeq7qb6sfq" path="res://PeneGordo65/Sprites/Todas-Sheet (1).png" id="2_rdtc7"]
+[ext_resource type="AudioStream" uid="uid://dufxjccbgn206" path="res://PeneGordo65/Sonidos/Pasos_.mp3" id="3_rdtc7"]
+[ext_resource type="Texture2D" uid="uid://bwrnxkuens4uw" path="res://PeneGordo65/Sprites/IdleSinMano.png" id="3_rlqnq"]
+[ext_resource type="Texture2D" uid="uid://dwa8axxbanh2o" path="res://PeneGordo65/Sprites/IdleMano.png" id="5_0uvs4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlqnq"]
+atlas = ExtResource("2_rdtc7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uvs4"]
+atlas = ExtResource("2_rdtc7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nslp"]
+atlas = ExtResource("2_rdtc7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umu7j"]
+atlas = ExtResource("2_rdtc7")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c68x5"]
+atlas = ExtResource("3_rlqnq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qraiw"]
+atlas = ExtResource("3_rlqnq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yoaja"]
+atlas = ExtResource("3_rlqnq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyykv"]
+atlas = ExtResource("3_rlqnq")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rawno"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlqnq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0uvs4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nslp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umu7j")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c68x5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qraiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yoaja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyykv")
+}],
+"loop": true,
+"name": &"idle_sin_mano",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxf12"]
+size = Vector2(14, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rawno"]
+atlas = ExtResource("5_0uvs4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxf12"]
+atlas = ExtResource("5_0uvs4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3yem"]
+atlas = ExtResource("5_0uvs4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfpfd"]
+atlas = ExtResource("5_0uvs4")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dbjbf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rawno")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxf12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3yem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfpfd")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[node name="Protagonista" type="CharacterBody2D" unique_id=1152096827]
+z_index = 1
+script = ExtResource("1_ti2e3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=761673068]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_rawno")
+animation = &"idle_sin_mano"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=787326440]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_mxf12")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=370449256]
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+
+[node name="AudioPasos" type="AudioStreamPlayer2D" parent="." unique_id=384946230]
+stream = ExtResource("3_rdtc7")
+
+[node name="ManoAnim" type="AnimatedSprite2D" parent="." unique_id=197626669]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_dbjbf")
+animation = &"idle"
+frame_progress = 0.6327326
+
+[node name="LapizSprite" type="Sprite2D" parent="ManoAnim" unique_id=309266645]

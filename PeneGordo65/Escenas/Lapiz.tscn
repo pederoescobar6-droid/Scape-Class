@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dhtjl1xrp107x"]
+
+[ext_resource type="Script" uid="uid://covu1iuae4j1h" path="res://PeneGordo65/Scripts/LapizManager.cs" id="1_2dyuu"]
+[ext_resource type="Texture2D" uid="uid://dv8b7lqunt343" path="res://PeneGordo65/Assets/Imágenes/Lapiz.png" id="2_7jikg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o858v"]
+size = Vector2(8, 32)
+
+[node name="Lapiz" type="Area2D" unique_id=1478251034]
+collision_layer = 0
+script = ExtResource("1_2dyuu")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=847021586]
+texture_filter = 1
+texture = ExtResource("2_7jikg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=464385905]
+light_mask = 4
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_o858v")

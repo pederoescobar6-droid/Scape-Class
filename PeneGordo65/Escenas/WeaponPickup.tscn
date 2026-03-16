@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dmlxn66mhpnxm"]
+
+[ext_resource type="Script" uid="uid://je1033n1u1tp" path="res://PeneGordo65/Scripts/WeaponPickup.cs" id="1_w8kxi"]
+[ext_resource type="Texture2D" uid="uid://dv8b7lqunt343" path="res://PeneGordo65/Assets/Imágenes/Lapiz.png" id="2_ikbtt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhml2"]
+size = Vector2(8, 32)
+
+[node name="Node2D" type="Node2D" unique_id=2069921567]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1694166452]
+script = ExtResource("1_w8kxi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2060733292]
+texture_filter = 1
+shape = SubResource("RectangleShape2D_nhml2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=2109284093]
+texture_filter = 1
+position = Vector2(-1, 0)
+texture = ExtResource("2_ikbtt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1338772769]
+
+[node name="Node2D" type="Node2D" parent="." unique_id=14624601]

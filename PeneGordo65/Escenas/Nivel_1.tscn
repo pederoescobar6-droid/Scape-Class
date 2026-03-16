@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://b81np4fygs87i"]
+
+[ext_resource type="PackedScene" uid="uid://ce655y2y7rued" path="res://PeneGordo65/Escenas/Protagonista.tscn" id="1_w6nl5"]
+[ext_resource type="Script" uid="uid://ddtm4kpp5vs1b" path="res://PeneGordo65/Scripts/AudioManager.cs" id="2_oeot2"]
+[ext_resource type="AudioStream" uid="uid://bqt5e8i8cq54h" path="res://PeneGordo65/Sonidos/Musica_Pasillo.mp3" id="3_w7ibh"]
+[ext_resource type="PackedScene" uid="uid://dho3fdd5uswpq" path="res://PeneGordo65/Escenas/Enemigo.tscn" id="4_w7ibh"]
+[ext_resource type="PackedScene" uid="uid://dhtjl1xrp107x" path="res://PeneGordo65/Escenas/Lapiz.tscn" id="5_13f5t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oeot2"]
+size = Vector2(33, 162)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7ibh"]
+size = Vector2(32, 162)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_13f5t"]
+size = Vector2(353, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c5k50"]
+size = Vector2(353, 35)
+
+[node name="Node2D" type="Node2D" unique_id=1534489665]
+
+[node name="Protagonista" parent="." unique_id=1152096827 instance=ExtResource("1_w6nl5")]
+
+[node name="AudioManager" type="Node" parent="." unique_id=355456234]
+script = ExtResource("2_oeot2")
+
+[node name="MusicaFondo" type="AudioStreamPlayer" parent="AudioManager" unique_id=1975564331]
+stream = ExtResource("3_w7ibh")
+volume_db = -16.197
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1493406638]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=510975235]
+position = Vector2(160.5, 0)
+shape = SubResource("RectangleShape2D_oeot2")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D" unique_id=297785338]
+offset_left = 144.0
+offset_top = -81.0
+offset_right = 177.0
+offset_bottom = 81.0
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=1203332181]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=1459170075]
+position = Vector2(-160, 0)
+shape = SubResource("RectangleShape2D_w7ibh")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D3" unique_id=1775956976]
+offset_left = -176.0
+offset_top = -81.0
+offset_right = -144.0
+offset_bottom = 81.0
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="." unique_id=1278186683]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4" unique_id=677664243]
+position = Vector2(0.5, 98)
+shape = SubResource("RectangleShape2D_13f5t")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D4" unique_id=1256015848]
+offset_left = -176.0
+offset_top = 81.0
+offset_right = 177.0
+offset_bottom = 115.0
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="." unique_id=1490755808]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5" unique_id=564473706]
+position = Vector2(0.5, -98.5)
+shape = SubResource("RectangleShape2D_c5k50")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D5" unique_id=2142806843]
+offset_left = -176.0
+offset_top = -116.0
+offset_right = 177.0
+offset_bottom = -81.0
+
+[node name="Enemigo" parent="." unique_id=1457576794 instance=ExtResource("4_w7ibh")]
+position = Vector2(-110, 11)
+
+[node name="Lapiz" parent="." unique_id=1478251034 instance=ExtResource("5_13f5t")]
+position = Vector2(81, 0)
