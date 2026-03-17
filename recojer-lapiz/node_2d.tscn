@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://dferi0yqyj0m2"]
+
+[ext_resource type="Texture2D" uid="uid://uyydtqxi37ib" path="res://sprites/Lapiz.png" id="1_0e48y"]
+[ext_resource type="Script" uid="uid://dutagm4dp5foc" path="res://scrips/Lapiz.cs" id="1_0hol4"]
+[ext_resource type="Texture2D" uid="uid://cekdwhgid33r7" path="res://sprites/IdleSinMano.png" id="2_epypp"]
+[ext_resource type="Script" uid="uid://b16cg2u4apmao" path="res://scrips/Protagonista.cs" id="3_0hol4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6r6c"]
+atlas = ExtResource("2_epypp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdubu"]
+atlas = ExtResource("2_epypp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d21ai"]
+atlas = ExtResource("2_epypp")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rj586"]
+atlas = ExtResource("2_epypp")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4d7sh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6r6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdubu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d21ai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rj586")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ir8iy"]
+size = Vector2(14, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
+size = Vector2(8, 32)
+
+[node name="Node2D" type="Node2D" unique_id=2047693992]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1864721359]
+collision_mask = 2
+script = ExtResource("3_0hol4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=351350609]
+texture_filter = 1
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_4d7sh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=745119842]
+position = Vector2(1, -15)
+shape = SubResource("RectangleShape2D_ir8iy")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1986457940]
+collision_layer = 2
+script = ExtResource("1_0hol4")
+
+[node name="Lapiz" type="Sprite2D" parent="Area2D" unique_id=783830607]
+texture_filter = 1
+position = Vector2(24, -20)
+texture = ExtResource("1_0e48y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1197466638]
+position = Vector2(25, -20)
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1491878353]
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
