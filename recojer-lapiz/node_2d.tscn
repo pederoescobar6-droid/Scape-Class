@@ -24,7 +24,7 @@ region = Rect2(96, 0, 32, 32)
 [sub_resource type="SpriteFrames" id="SpriteFrames_4d7sh"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_q6r6c")
 }, {
 "duration": 1.0,
@@ -76,5 +76,6 @@ position = Vector2(25, -20)
 shape = SubResource("RectangleShape2D_0hol4")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1491878353]
+scale = Vector2(0.9804961, 0.97173154)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
