@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://kwx2kjqx8t8w"]
+
+[ext_resource type="PackedScene" uid="uid://dgq1focai8bh0" path="res://Escenas/pasillos/pasillo.tscn" id="1_j7uhu"]
+
+[node name="Node2D" type="Node2D" unique_id=79017873]
+
+[node name="Pasillo" parent="." unique_id=989184908 instance=ExtResource("1_j7uhu")]
