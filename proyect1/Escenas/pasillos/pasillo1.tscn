@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://ci6virw520ngj"]
+
+[ext_resource type="PackedScene" uid="uid://dgq1focai8bh0" path="res://Escenas/pasillos/pasillo.tscn" id="1_a6d6v"]
+[ext_resource type="Script" uid="uid://b16cg2u4apmao" path="res://scrips/Protagonista.cs" id="2_27d6r"]
+[ext_resource type="Texture2D" uid="uid://k2aayjj5gd6h" path="res://sprites/TodasProta-Sheet.png" id="3_chq0l"]
+[ext_resource type="Script" uid="uid://drkvf1a2ucxhv" path="res://scrips/pasillo2tp.cs" id="4_3vwrn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxdof"]
+atlas = ExtResource("3_chq0l")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xh76e"]
+atlas = ExtResource("3_chq0l")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gydug"]
+atlas = ExtResource("3_chq0l")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81y0d"]
+atlas = ExtResource("3_chq0l")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jg5rt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxdof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xh76e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gydug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81y0d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01r2v"]
+size = Vector2(14, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5peg"]
+size = Vector2(13, 68)
+
+[node name="Node2D" type="Node2D" unique_id=1501443665]
+
+[node name="Pasillo" parent="." unique_id=989184908 instance=ExtResource("1_a6d6v")]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1374778111]
+collision_mask = 2
+script = ExtResource("2_27d6r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1674131032]
+texture_filter = 1
+position = Vector2(159, 199)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_jg5rt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=159489194]
+position = Vector2(161, 201)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_01r2v")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1837479902]
+position = Vector2(161, 201)
+scale = Vector2(2, 2)
+collision_layer = 2
+script = ExtResource("4_3vwrn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1618895882]
+position = Vector2(269.5, 14.5)
+shape = SubResource("RectangleShape2D_b5peg")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
